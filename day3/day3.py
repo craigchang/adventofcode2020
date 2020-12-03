@@ -27,8 +27,7 @@ def numTrees(grid, xSlope, ySlope):
     for row in range(0, len(grid), ySlope):
         if (row == 0): continue # skip 1st iter
         if (grid[row][col] == "#"): count += 1
-        col += xSlope
-        if (col >= rowSize): col -= rowSize # reset pos to left of grid
+        col = (col + xSlope) % rowSize # reset pos to left of grid
     return count
 
 part1()
