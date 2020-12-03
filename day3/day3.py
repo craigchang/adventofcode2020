@@ -1,15 +1,17 @@
 import re
 
 def part1():
-    print(numTrees(3,1))
+    grid = readFile()
+    print(numTrees(grid,3,1))
 
 def part2():
+    grid = readFile()
     print(
-        numTrees(1,1) * 
-        numTrees(3,1) *
-        numTrees(5,1) *
-        numTrees(7,1) *
-        numTrees(1,2) 
+        numTrees(grid,1,1) * 
+        numTrees(grid,3,1) *
+        numTrees(grid,5,1) *
+        numTrees(grid,7,1) *
+        numTrees(grid,1,2) 
     )
 
 def readFile():
@@ -17,9 +19,7 @@ def readFile():
         grid = [line.rstrip() for line in file]
     return grid
 
-def numTrees(xSlope, ySlope):
-    grid = readFile()
-
+def numTrees(grid, xSlope, ySlope):
     col = xSlope
     rowSize = len(grid[0])
     count = 0
