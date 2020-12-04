@@ -1,5 +1,15 @@
 import re
 
+REQUIRED_REGEX = "ecl|pid|eyr|hcl|byr|iyr|hgt"
+BYR_REGEX = "(?=.*byr:(19[2-9][0-9]|200[0-2]))"
+IYR_REGEX = "(?=.*iyr:(201[0-9]|2020))"
+EYR_REGEX = "(?=.*eyr:(202[0-9]|2030))"
+HGT_REGEX = "(?=.*(hgt:(1[5-8][0-9]|19[0-3])cm|hgt:(59|6[0-9]|7[0-6])in))"
+HCL_REGEX = "(?=.*hcl:(#[a-f0-9]{6}\\b))"
+ECL_REGEX = "(?=.*ecl:(amb|blu|brn|gry|grn|hzl|oth))"
+PID_REGEX = "(?=.*pid:(\\d{9}\\b))"
+
+
 def readFile():
     with open("day4/input.txt", "r") as file:
         return [line.rstrip() for line in file] + [""] # added empty line for looping purposes
@@ -11,7 +21,7 @@ def part1():
     valid = 0
     for line in data:
         if line == "": # if blank check validity of current passport
-            if len(re.findall('ecl|pid|eyr|hcl|byr|iyr|hgt', passport)) == 7:
+            if len(re.findall(REQUIRED_REGEX, passport)) == 7:
                 valid += 1
             passport = "" # start new passport check
             continue
@@ -25,15 +35,7 @@ def part2():
     valid = 0
     for line in data:
         if line == "": # if blank check validity of current passport
-            byr = re.search('byr:(19[2-9][0-9]|200[0-2])', passport)
-            iyr = re.search('iyr:(201[0-9]|2020)', passport)
-            eyr = re.search('eyr:(202[0-9]|2030)', passport)
-            hgt = re.search('hgt:(1[5-8][0-9]|19[0-3])cm|hgt:(59|6[0-9]|7[0-6])in', passport)
-            hcl = re.search('hcl:(#[a-f0-9]{6}\\b)', passport)
-            ecl = re.search('ecl:(amb|blu|brn|gry|grn|hzl|oth)', passport)
-            pid = re.search('pid:(\\d{9}\\b)', passport)
-
-            if byr and iyr and eyr and hgt and hcl and ecl and pid:
+            if re.search(BYR_REGEX + IYR_REGEX + EYR_REGEX + HGT_REGEX + HCL_REGEX + ECL_REGEX + PID_REGEX + ".*", passport):
                 valid += 1
             passport = ""
             continue
