@@ -4,7 +4,6 @@ def readFile():
     with open("day4/input.txt", "r") as file:
         return [line.rstrip() for line in file] + [""] # added empty line for looping purposes
 
-
 def part1():
     data = readFile()
 
@@ -34,7 +33,7 @@ def part2():
             ecl = re.search('ecl:(amb|blu|brn|gry|grn|hzl|oth)', passport)
             pid = re.search('pid:(\\d{9}\\b)', passport)
 
-            if byr != None and iyr != None and eyr != None and hgt != None and hcl != None and ecl != None and pid != None:
+            if byr and iyr and eyr and hgt and hcl and ecl and pid:
                 valid += 1
             passport = ""
             continue
