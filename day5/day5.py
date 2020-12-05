@@ -16,11 +16,13 @@ def part1():
 
 def part2(seatIdList):
     seatIdList.sort()
-    i = seatIdList[0]
-    for seatId in seatIdList:
-        if (i == seatId):
-            i += 1
-    print(i)
+    for seatId, i in enumerate(seatIdList, seatIdList[0]):
+        if (i != seatId):
+            print(i - 1) # display previous value
+            break
+
+
+    
 
 seatIdList = part1()
 part2(seatIdList)
