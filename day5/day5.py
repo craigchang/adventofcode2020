@@ -20,9 +20,6 @@ def part2(seatIdList):
         if (i != seatId):
             print(i - 1) # display previous value
             break
-
-
-    
-
+        
 seatIdList = part1()
 part2(seatIdList)
