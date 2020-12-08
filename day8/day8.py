@@ -1,8 +1,8 @@
 import re
 
-def readFile(): # returns map of bags and its contents
+def readFile():
     with open("day8/input.txt", "r") as file:
-        return [ (line.split(" ")[0], int(line.split(" ")[1])) for line in file]
+        return [(line.split(" ")[0], int(line.split(" ")[1])) for line in file]
 
 def calculateAccumulator(instructions):
     ptr = accum = 0
