@@ -35,18 +35,18 @@ def part2():
 
     while (i < len(instructions)):
         newInstructions = instructions.copy()
-        for instr, val in newInstructions:
-            if (instr == "jmp"): # replace instruction
-                newInstructions[i] = ("nop", val) 
-                break
-            elif (instr == "nop"):
-                newInstructions[i] = ("jmp", val) 
+        
+        for instr, val in newInstructions[i:]:
+            print(i, instr, val)
+            if (instr != "acc"): # replace instruction 
+                newInstructions[i] = ("nop" if instr == "jmp" else "jmp", val)
                 break
             i += 1
 
         accum, infiniteLoop = calculateAccumulator(newInstructions)
         if (not infiniteLoop):
             break
+        i += 1
 
     print(accum)
 
