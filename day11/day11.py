@@ -97,8 +97,6 @@ def part2():
                 elif (grid[y][x] == "#" and numOfDirectionalSeatsOccupied(grid, x, y) >= 5):
                     newGrid[y][x] = "L"
         
-        printGrid(grid)
-
         if (not isNotDuplicate(grid, newGrid)):
             break
         else:
